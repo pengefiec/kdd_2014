@@ -7,7 +7,7 @@ Created on Tue May 20 13:44:46 2014
 import re
 import os
 import sys
-import pandas as pd
+import pandas as pd#for data analysis
 import numpy as np
 from sklearn import metrics
 from sklearn.linear_model import SGDClassifier
