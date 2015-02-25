@@ -7,7 +7,7 @@ Created on Tue May 20 13:44:46 2014
 import re
 import os
 import sys
-import pandas as pd#for data analysis
+import pandas as pd#for data analysis and modelingenabling you to carry out your entire data analysis workflow in Python without having to switch to a more domain specific language like R. http://pandas.pydata.org/
 import numpy as np
 from sklearn import metrics
 from sklearn.linear_model import SGDClassifier
@@ -61,10 +61,10 @@ def get_pred_partials(df, y="y",id_var="projectid", text_vars=["title", "short_d
         df2[var+"_"+y+"_pred_partial"] = df[var+"_pred_partial"]
         df2[var+"_"+y+"_pred"] = df[var+"_pred"]
     return df2
-    
+#get the number of words    
 def get_length(string):
     return len(string.split())
-        
+#get clean text by replace extra space and anomalout character with single space        
 def clean_essay(string, lower=False):
     string = re.sub(r"\\t", " ", string)   
     string = re.sub(r"\\n", " ", string)   
@@ -76,7 +76,7 @@ def clean_essay(string, lower=False):
     return string.strip()
 
 def get_prev_exp(df, to_file, var="teacher_acctid", responses=["y","y2","y3","y4","y5","y6","y7","y8","y9","y10"]):
-    df = df.sort([var, "date_posted"])
+    df = df.sort([var, "date_posted"])#basic data structure of panda
     df.index = range(len(df))    
     with open(to_file, "wb") as f:
         f.write(",".join(["projectid",var,"date_posted",var+"_days"] + [var+"_"+r+"_prev" for r in responses] + [var+"_cnt",var+"_cnt_train"])+"\n")   
